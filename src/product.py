@@ -1,18 +1,15 @@
-
 class Product:
     """Класс для описания продукта по категориям"""
-    name: str         # название товара в категории "products"
+    name: str  # название товара в категории "products"
     description: str  # описание товара
-    price: float      # цена
-    quantity: int     # количество в наличии
-
+    price: float  # цена
+    quantity: int  # количество в наличии
 
     def __init__(self, name, description, price, quantity):
         self.name = name
         self.description = description
         self.price = price
         self.quantity = quantity
-
 
 # if __name__ == "__main__":
 #     product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
@@ -28,8 +25,8 @@ class Product:
 #     print(product2.description)
 #     print(product2.price)
 #     print(product2.quantity)
-
-    print(product3.name)
-    print(product3.description)
-    print(product3.price)
-    print(product3.quantity)
+#
+#     print(product3.name)
+#     print(product3.description)
+#     print(product3.price)
+#     print(product3.quantity)

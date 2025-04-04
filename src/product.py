@@ -1,32 +1,114 @@
+from typing import Union, Dict, Hashable, Any
+
+
 class Product:
-    """Класс для описания продукта по категориям"""
-    name: str  # название товара в категории "products"
-    description: str  # описание товара
-    price: float  # цена
-    quantity: int  # количество в наличии
+    """
+    Класс для описания продукта по категориям
+
+    Атрибуты:
+    name (str) : название товара в категории "products"
+    description (str) : описание товара
+    price (Union[int, float]) : цена товара
+    quantity (int) : количество в наличии
+    """
+    name: str
+    description: str
+    price: Union[int, float]
+    quantity: int
 
     def __init__(self, name, description, price, quantity):
         self.name = name
         self.description = description
-        self.price = price
+        self.__price = price
         self.quantity = quantity
 
-# if __name__ == "__main__":
-#     product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
-#     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
-#     product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
-#
-#     print(product1.name)
-#     print(product1.description)
-#     print(product1.price)
-#     print(product1.quantity)
-#
-#     print(product2.name)
-#     print(product2.description)
-#     print(product2.price)
-#     print(product2.quantity)
-#
-#     print(product3.name)
-#     print(product3.description)
-#     print(product3.price)
-#     print(product3.quantity)
+        if self.__price < 0:
+            raise ValueError("Цена не может быть отрицательной")
+        if self.quantity < 0:
+            raise ValueError("Количество не может быть отрицательным")
+
+
+    @property
+    def price(self):
+        """
+        Гетер, который описывает цену товара.
+        :return: Приватный атрибут цены.
+        """
+        return self.__price
+
+    @price.setter
+    def price(self, nev_prise):
+        """
+        Сеттер, реализуйте проверку,
+        а так же в случае если цена товара понижается, добавить логику подтверждения пользователем вручную
+        :param nev_prise: Новая цена за товар
+        """
+        if nev_prise <= 0:
+            print("Цена не должна быть нулевая или отрицательная")
+        elif nev_prise < self.__price:
+            confirmation = (
+                input(f"Вы хотите изменить цену {self.__price} на цену {nev_prise} (y/n)").strip().lower())
+            if confirmation == "y":
+                self.__price = nev_prise
+                print(f"Цена изменена на {nev_prise}")
+            else:
+                print("Цена не поменялась")
+        else:
+            self.__price=nev_prise
+
+
+    @classmethod
+    def new_product(cls, product_parameters: Dict[Hashable, Any], similar_product: list = None):
+        """
+        Метод, который будет принимать на вход параметры товара в словаре и возвращать созданный объект класса Product.
+        А также проверку наличия такого же товара схожего по имени.
+        :param product_parameters: Параметры товара в виде словаря.
+        :param similar_product: Список товаров, в котором нужно искать дубликаты (пока тип лист, возможно лист словарей)
+        :return: Созданный объект класса Product.
+        """
+
+        product = cls(
+            name=product_parameters["name"],
+            description=product_parameters["description"],
+            price=product_parameters["price"],
+            quantity=product_parameters["quantity"]
+        )
+
+        if similar_product:
+            for item in similar_product:
+                if product.name == item.name:
+                    product.quantity += item.quantity
+                    product.quantity = max(product.price, item.price)
+
+        return product
+
+
+if __name__ == "__main__":
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 190000.0, 5)
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 35000.0, 14)
+    product4 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 10)
+
+    print(product1.name)
+    print(product1.description)
+    print(product1.price)
+    print(product1.quantity)
+
+    print(product2.name)
+    print(product2.description)
+    print(product2.price)
+    print(product2.quantity)
+
+    print(product3.name)
+    print(product3.description)
+    print(product3.price)
+    print(product3.quantity)
+
+    new_product = Product.new_product(
+        {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
+         "quantity": 7})
+
+    print(new_product.name)
+    print(new_product.description)
+    print(new_product.price)
+    print(new_product.quantity)

@@ -14,7 +14,8 @@ class Category:
     """
     name: str
     description: str
-    products: list
+    __products: list[Product] = []
+
     category_count = 0
     product_count = 0
 
@@ -26,17 +27,12 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(self.__products) if products else 0
 
-
     @property
     def products(self):
-        """
-        Геттер, который выводить список товаров в виде строк
-        """
-        products = [
-            f"{product.name}, {product.description}, {product.price} руб. Остаток: {product.quantity}" for product in self.__products
-        ]
-        return "\n".join(products)
-
+        products_str = ""
+        for product in self.__products:
+            products_str += f"{product.name}, {product.description}, {product.price} руб. Остаток: {product.quantity}\n"
+        return products_str
 
     def add_product(self, product: Product):
         """
@@ -45,8 +41,6 @@ class Category:
         """
         self.__products.append(product)
         Category.product_count += 1
-
-
 
 # if __name__ == "__main__":
 #     product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
@@ -67,8 +61,14 @@ class Category:
 #     print(category1.product_count)
 #
 #     new_product = Product.new_product(
-#         {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 180000.0,
-#          "quantity": 5})
+#         {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 190000.0,
+#          "quantity": 7})
+#     print("------------------")
+#     category1.add_product(new_product)
+#     print(category1.products)
+#
+#     print("------------------")
+#
 #     print(new_product.name)
 #     print(new_product.description)
 #     print(new_product.price)
@@ -81,6 +81,9 @@ class Category:
 #     print(new_product.price)
 #     new_product.price = 0
 #     print(new_product.price)
-#     print("------------------")
+#
 #     print(Category.category_count)
 #     print(Category.product_count)
+#     print("------------------")
+#     print(category1.product_count)
+#     print(category1.products)

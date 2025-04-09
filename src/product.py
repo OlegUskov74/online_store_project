@@ -1,3 +1,4 @@
+
 from typing import Union, Dict, Hashable, Any
 
 
@@ -26,6 +27,23 @@ class Product:
             raise ValueError("Цена не может быть отрицательной")
         if self.quantity < 0:
             raise ValueError("Количество не может быть отрицательным")
+
+
+    def __str__(self):
+        """
+        Магический метод отображения информации об объекте класса Product для пользователей
+        :return: строка в виде 'Название продукта, ?? руб. Остаток: ?? шт.'
+        """
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
+
+
+    def __add__(self, other):
+        """
+        Магический метод, для сложения цены и количества в наличии
+        :return:Общая цена продукта на складе
+        """
+        return (self.__price * self.quantity) + (other.__price * other.quantity)
+
 
     @property
     def price(self):

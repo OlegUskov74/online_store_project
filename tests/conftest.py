@@ -2,6 +2,7 @@ import pytest
 
 from src.category import Category
 from src.product import Product
+from src.my_iterator import MyIterator
 
 
 @pytest.fixture
@@ -73,3 +74,15 @@ def new_product():
             "Количество не может быть отрицательным")])
 def product_fixture_negative(request):
     return request.param
+
+@pytest.fixture
+def product_sum1():
+    return Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+
+@pytest.fixture
+def product_sum2():
+    return Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+
+@pytest.fixture
+def product_iterator(second_product):
+    return MyIterator(second_product)

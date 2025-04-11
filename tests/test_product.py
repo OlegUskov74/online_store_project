@@ -65,3 +65,7 @@ def test_product_negative(product_fixture_negative):
     product_data, expected_error = product_fixture_negative
     with pytest.raises(ValueError, match=expected_error):
         Product(**product_data)
+
+def test_product_add(product_sum1, product_sum2):
+    assert product_sum1 + product_sum2 == 2580000.0
+

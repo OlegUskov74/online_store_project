@@ -34,6 +34,6 @@ def test_creade_objects_from_json() -> None:
     assert creade_objects_from_json(read_json(PATH_JSON))[0].name == "Смартфоны"
     assert creade_objects_from_json(read_json(PATH_JSON))[0].description == ("Смартфоны, как средство не только коммуникации, "
                                                                              "но и получение дополнительных функций для удобства жизни")
-    assert creade_objects_from_json(read_json(PATH_JSON))[0].products == ("Samsung Galaxy C23 Ultra, 256GB, Серый цвет, 200MP камера, 180000.0 руб. Остаток: 5\n" 
-                                                                          "Iphone 15, 512GB, Gray space, 210000.0 руб. Остаток: 8\n"
-                                                                          "Xiaomi Redmi Note 11, 1024GB, Синий, 31000.0 руб. Остаток: 14\n")
+    assert creade_objects_from_json(read_json(PATH_JSON))[0].products == ("Samsung Galaxy C23 Ultra, 180000.0 руб. Остаток: 5 шт.\n" 
+                                                                          "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
+                                                                          "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n")

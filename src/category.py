@@ -22,17 +22,31 @@ class Category:
     def __init__(self, name, description, products):
         self.name = name
         self.description = description
-        self.__products = products if products else []
+        self.__products = products
 
         Category.category_count += 1
         Category.product_count += len(self.__products) if products else 0
+
+    def __str__(self):
+        """
+        Магический метод отображения информации об объекте класса Category для пользователей
+        :return: строка в виде 'Название категории, количество продуктов: ?? шт.'
+        """
+        quantity_sum = 0
+        for item in self.__products:
+            quantity_sum += item.quantity
+        return f"{self.name}, количество продуктов: {quantity_sum} шт."
 
     @property
     def products(self):
         products_str = ""
         for product in self.__products:
-            products_str += f"{product.name}, {product.description}, {product.price} руб. Остаток: {product.quantity}\n"
+            products_str += f"{str(product)}\n"
         return products_str
+
+    @property
+    def product_in_lict(self):
+        return self.__products
 
     def add_product(self, product: Product):
         """
@@ -47,43 +61,24 @@ class Category:
 #     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
 #     product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
 #
+#     print(str(product1))
+#     print(str(product2))
+#     print(str(product3))
+#
 #     category1 = Category(
 #         "Смартфоны",
 #         "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
 #         [product1, product2, product3]
 #     )
-#     print(category1.product_count)
-#     print(category1.products)
-#     print("----------------")
-#     product4 = Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
-#     category1.add_product(product4)
-#     print(category1.products)
-#     print(category1.product_count)
-#
-#     new_product = Product.new_product(
-#         {"name": "Samsung Galaxy S23 Ultra", "description": "256GB, Серый цвет, 200MP камера", "price": 190000.0,
-#          "quantity": 7})
-#     print("------------------")
-#     category1.add_product(new_product)
-#     print(category1.products)
-#
-#     print("------------------")
-#
-#     print(new_product.name)
-#     print(new_product.description)
-#     print(new_product.price)
-#     print(new_product.quantity)
-#
-#     new_product.price = 800
-#     print(new_product.price)
-#
-#     new_product.price = -100
-#     print(new_product.price)
-#     new_product.price = 0
-#     print(new_product.price)
+#     print("-----------------")
+#     print(str(category1))
 #
 #     print(Category.category_count)
-#     print(Category.product_count)
-#     print("------------------")
 #     print(category1.product_count)
+#     print("-----------------")
+#
 #     print(category1.products)
+#     print("-----------------")
+#     print(product1 + product2)
+#     print(product1 + product3)
+#     print(product2 + product3)

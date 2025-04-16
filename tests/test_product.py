@@ -69,3 +69,4 @@ def test_product_negative(product_fixture_negative):
 def test_product_add(product_sum1, product_sum2):
     assert product_sum1 + product_sum2 == 2580000.0
 
+

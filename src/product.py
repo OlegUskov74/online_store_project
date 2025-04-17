@@ -2,6 +2,8 @@
 from typing import Union, Dict, Hashable, Any
 
 
+
+
 class Product:
     """
     Класс для описания продукта по категориям
@@ -14,7 +16,7 @@ class Product:
     """
     name: str
     description: str
-    price: Union[int, float]
+    __price: Union[int, float]
     quantity: int
 
     def __init__(self, name, description, price, quantity):
@@ -42,8 +44,9 @@ class Product:
         Магический метод, для сложения цены и количества в наличии
         :return:Общая цена продукта на складе
         """
-        return (self.__price * self.quantity) + (other.__price * other.quantity)
-
+        if type(other) is Product:
+            return (self.__price * self.quantity) + (other.__price * other.quantity)
+        raise TypeError
 
     @property
     def price(self):
@@ -141,3 +144,8 @@ class Product:
 #     print(new_product.quantity)
 #
 #     print("-------------------")
+#
+#     print(product1 + product2)
+#     print(product1 + product3)
+#     print(product2 + product3)
+#

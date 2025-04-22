@@ -1,9 +1,10 @@
+from src.base_category import BaseCategory
 from src.lawn_grass import LawnGrass
 from src.product import Product
 from src.smartphone import Smartphone
 
 
-class Category:
+class Category(BaseCategory):
     """
     Класс для описания категорий
 
@@ -18,7 +19,9 @@ class Category:
     description: str
     __products: list[Product] = []
 
+    # Переменная на уровне класса по подсчету количества категорий
     category_count = 0
+    # Переменная на уровне класса по подсчету количества товаров
     product_count = 0
 
     def __init__(self, name, description, products):
@@ -67,6 +70,7 @@ class Category:
 #     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
 #     product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
 #
+#
 #     print(product1.name)
 #     print(product1.description)
 #     print(product1.price)
@@ -93,9 +97,10 @@ class Category:
 #     print(category1.product_count)
 #
 #     product4 = Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
+#     product5 = Product("55\" QLED 4", "Фоновая подсветка", 123000.0, 7)
 #     category2 = Category("Телевизоры",
 #                          "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
-#                          [product4])
+#                          [product4, product5])
 #
 #     print(category2.name)
 #     print(category2.description)
@@ -104,6 +109,9 @@ class Category:
 #
 #     print(Category.category_count)
 #     print(Category.product_count)
+#
+#     print("-----------------")
+#     print(str(category1))
 
 
 

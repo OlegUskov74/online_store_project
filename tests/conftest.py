@@ -5,6 +5,7 @@ from src.product import Product
 from src.my_iterator import MyIterator
 from src.smartphone import Smartphone
 from src.lawn_grass import LawnGrass
+from src.order import Order
 
 
 @pytest.fixture
@@ -35,7 +36,7 @@ def second_product():
 
 @pytest.fixture
 def product():
-    return Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
+    return Product("55 QLED 4K", "Фоновая подсветка", 123000.0, 7)
 
 @pytest.fixture
 def product_list():
@@ -105,3 +106,14 @@ def lawn_grass_product1():
 @pytest.fixture
 def lawn_grass_product2():
     return LawnGrass("Газонная трава 2", "Выносливая трава", 450.0, 15, "США", "5 дней", "Темно-зеленый")
+
+@pytest.fixture
+def firs_product_order():
+    return Order(
+        name="Смартфоны",
+        description="Заказ",
+        products=[Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)],
+        quantity_purchased=2,
+        total_cost=210000
+    )
+

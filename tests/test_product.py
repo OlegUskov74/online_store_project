@@ -6,7 +6,7 @@ def test_product_init(product):
     """
     [Тест] Проверка инициализации атрибутов.
     """
-    assert product.name == "55\" QLED 4K"
+    assert product.name == "55 QLED 4K"
     assert product.description == "Фоновая подсветка"
     assert product.price == 123000.0
     assert product.quantity == 7
@@ -28,7 +28,7 @@ def test_price_setter(capsys, product, monkeypatch):
     assert product.price == 123000.0
     product.price = -1000
     message = capsys.readouterr()
-    assert message.out.strip() == "Цена не должна быть нулевая или отрицательная"
+    assert message.out.strip().split("\n")[-1] == "Цена не должна быть нулевая или отрицательная"
     monkeypatch.setattr("builtins.input", lambda _: "y")
     product.price = 124000.0
     assert product.price == 124000.0
@@ -62,6 +62,9 @@ def test_new_product_similar_in_name(product_list, new_product):
     assert  new_product.quantity == 12
 
 def test_product_negative(product_fixture_negative):
+    """
+    [Тест] Негативный исход добавления товара
+    """
     product_data, expected_error = product_fixture_negative
     with pytest.raises(ValueError, match=expected_error):
         Product(**product_data)

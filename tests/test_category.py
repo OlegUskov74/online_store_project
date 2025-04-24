@@ -1,4 +1,6 @@
 import pytest
+from pyexpat.errors import messages
+
 from src.category import Category
 from src.product import Product
 
@@ -43,7 +45,7 @@ def test_my_iterator(product_iterator):
 
 def test_add_product_error(firs_product, product):
     """
-    [Тест] Возбуждение ошибки при добавление "не продукта"
+    [Тест] Возбуждение ошибки при добавлении "не продукта"
     """
     with pytest.raises(TypeError):
         firs_product.add_product("Не продукт")
@@ -54,4 +56,14 @@ def test_add_product_smartphone(firs_product, smartphone_product1):
     """
     firs_product.add_product(smartphone_product1)
 
+def test_middle_price(firs_product, category_empty):
+    assert firs_product.middle_price() == 195000
+    assert category_empty.middle_price() == 0
+
+def test_custom_exception(capsys, firs_product):
+    nev_product_add = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+    firs_product.add_product(nev_product_add)
+    message = capsys.readouterr()
+    assert message.out.strip().split('\n')[-2] == "Товар добавлен"
+    assert message.out.strip().split('\n')[-1] == "Обработка добавления товара завершена"
 

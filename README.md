@@ -70,7 +70,7 @@ pytest --cov=src
 pytest --cov=src --cov-report=html
 ```
 
-Coverage report: 97%
+Coverage report: 96%
 
 ## Лицензия
 Проект распространяется под [лицензией MIT](LICENSE)

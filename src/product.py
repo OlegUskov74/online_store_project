@@ -24,7 +24,10 @@ class Product(BaseProduct, PrintMixin):
         self.name = name
         self.description = description
         self.__price = price
-        self.quantity = quantity
+        if quantity > 0:
+            self.quantity = quantity
+        else:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         super().__init__()
 
         if self.__price < 0:
@@ -107,7 +110,6 @@ class Product(BaseProduct, PrintMixin):
 #     product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 190000.0, 5)
 #     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
 #     product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 35000.0, 14)
-#     # product4 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 10)
 #
 #     print(product1.name)
 #     print(product1.description)
@@ -123,6 +125,8 @@ class Product(BaseProduct, PrintMixin):
 #     print(product3.description)
 #     print(product3.price)
 #     print(product3.quantity)
+#
+#     product7 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 190000.0, 0)
 #
 #     product_list = [{
 #         "name": "Samsung Galaxy S23 Ultra",

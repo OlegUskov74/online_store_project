@@ -106,12 +106,12 @@ class Category(BaseCategory):
 #
 #     category_empty = Category("Пустая категория", "Категория без продуктов", [])
 #     print(category_empty.middle_price())
+#
+#
+#
+#     product4 = Product("Xiaomi Redmi Note 1100", "1024GB, Синий", 31000.0, 0)
+#     print(category1.add_product(product4))
 
-
-
-    # product4 = Product("Xiaomi Redmi Note 1100", "1024GB, Синий", 31000.0, 14)
-    # print(category1.add_product(product4))
-    #
     # print(Category.category_count)
     # print(category1.product_count)
     # print(category_empty.category_count)

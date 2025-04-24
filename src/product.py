@@ -24,13 +24,11 @@ class Product(BaseProduct, PrintMixin):
         self.name = name
         self.description = description
         self.__price = price
-        self.quantity = quantity
+        if quantity > 0:
+            self.quantity = quantity
+        else:
+            raise ValueError ("Товар с нулевым количеством не может быть добавлен")
         super().__init__()
-
-        if self.__price < 0:
-            raise ValueError("Цена не может быть отрицательной")
-        if self.quantity < 0:
-            raise ValueError("Количество не может быть отрицательным")
 
 
     def __str__(self):

@@ -20,7 +20,6 @@ def firs_product():
     )
 
 
-
 @pytest.fixture
 def second_product():
     return Category(
@@ -116,4 +115,8 @@ def firs_product_order():
         quantity_purchased=2,
         total_cost=210000
     )
+
+@pytest.fixture
+def category_empty():
+    return Category("Пустая категория", "Категория без продуктов", [])
 

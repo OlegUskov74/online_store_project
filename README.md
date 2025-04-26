@@ -5,9 +5,10 @@
 ### На данный момент в проекте:
 
 Созданы классы Product, Category, MyIterator, Smartphone, LawnGrass
-BaseProduct, PrintMixin, Order
+BaseProduct, BaseCategory, PrintMixin, Order, ZeroRunProduct
 
 #### Базовый абстрактный класс BaseProduct, который станет родительским для класса продуктов.
+#### Базовый абстрактный класс BaseCategory, который станет родительским для класса категории.
 
 #### Для класса Product определите следующие свойства:
 
@@ -51,6 +52,7 @@ BaseProduct, PrintMixin, Order
 2. итоговая стоимость (total_cost)
 
 #### Класс-миксин PrintMixin, который будет при создании объекта, то есть при работе метода __init__, печатать в консоль информацию о том, от какого класса и с какими параметрами был создан объект.
+#### Класс исключения ZeroRunProduct, который отвечает за обработку событий, когда в «Категорию» или «Заказ» добавляется товар с нулевым количеством.
 
 ## Тестирование
 
@@ -70,7 +72,7 @@ pytest --cov=src
 pytest --cov=src --cov-report=html
 ```
 
-Coverage report: 97%
+Coverage report: 95%
 
 ## Лицензия
 Проект распространяется под [лицензией MIT](LICENSE)

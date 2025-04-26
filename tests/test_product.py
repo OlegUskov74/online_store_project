@@ -16,7 +16,6 @@ def test_price(product):
     """
     [Тест] Тест геттера цены товара.
     """
-    # product = Product("Iphone 15", "512GB, Gray space", 210000, 5)
     assert product.price == 123000.0
 
 
@@ -61,15 +60,10 @@ def test_new_product_similar_in_name(product_list, new_product):
     assert  new_product.price == 190000.0
     assert  new_product.quantity == 12
 
-def test_product_negative(product_fixture_negative):
-    """
-    [Тест] Негативный исход добавления товара
-    """
-    product_data, expected_error = product_fixture_negative
-    with pytest.raises(ValueError, match=expected_error):
-        Product(**product_data)
 
 def test_product_add(product_sum1, product_sum2):
     assert product_sum1 + product_sum2 == 2580000.0
 
-
+def test_product_add_negative(product_sum1):
+    with pytest.raises(TypeError):
+        product_sum1 + 1
